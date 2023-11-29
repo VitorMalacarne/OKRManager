@@ -1,7 +1,10 @@
 using Microsoft.EntityFrameworkCore;
+using OkrManager.Interfaces;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using OKRManager.Data;
 
 
 namespace OkrManager.Repositories

@@ -1,11 +1,14 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace OkrManager.Models;
 
 public class User
 {
-    protected int ID { get; set; }
-	private string name{ get; set; }
-	private string password { get; set; }
-	private <List>
+	[Key]
+    public int ID { get; set; }
+	public string name{ get; set; }
+	public string password { get; set; }
+	public List<Objective> objectives { get; set; }
 
 
 }
