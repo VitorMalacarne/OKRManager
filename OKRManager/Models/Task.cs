@@ -4,10 +4,39 @@ namespace OkrManager.Models;
 
 public abstract class Task
 {
-   
-    public string title { get; set; }
-    public string description { get; set; }
-    public DateTime startDate { get; set; }
-    public DateTime endDate { get; set; }
-    public bool status { get; set; }
+    private string _title;
+    private string _description;
+    private DateTime _startDate;
+    private DateTime _endDate;
+    private bool _status;
+
+    public string Title
+    {
+        get => _title;
+        set => _title = value;
+    }
+
+    public string Description
+    {
+        get => _description;
+        set => _description = value;
+    }
+
+    public DateTime StartDate
+    {
+        get => _startDate;
+        set => _startDate = value;
+    }
+
+    public DateTime EndDate
+    {
+        get => _endDate;
+        set => _endDate = value;
+    }
+
+    public bool Status
+    {
+        get => _status;
+        set => _status = value;
+    }
 }

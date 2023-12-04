@@ -4,13 +4,11 @@ using Microsoft.EntityFrameworkCore.Migrations.Operations;
 using OkrManager.Models;
 using OkrManager.Repositories;
 
-    var user = new User
-    {
-        ID = 1,
-        name = "Nome do Usuário",
-        password = "Senha123",
-        objectives = new List<Objective>()
-    };
-    var UserRepository = new Repository<User>();
-    UserRepository.Create(user);
+var userRepository = new Repository<User>();
+var useraux = (userRepository.GetById(2));
+var user = new User(useraux.Id, useraux.Name, useraux.Password);
+
+Console.WriteLine(user.Name);
+Console.WriteLine(user.Password);
+
 

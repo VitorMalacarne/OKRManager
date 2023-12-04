@@ -23,4 +23,32 @@
       <PackageReference Include="SkyAPM.Diagnostics.EntityFrameworkCore.Pomelo.MySql" Version="2.1.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Compile Remove="Migrations\20231129233235_NomeDaMigracao.cs" />
+      <Compile Remove="Migrations\20231129233235_NomeDaMigracao.Designer.cs" />
+      <Compile Remove="Migrations\20231130170257_Migracao2.cs" />
+      <Compile Remove="Migrations\20231130170257_Migracao2.Designer.cs" />
+      <Compile Remove="Migrations\20231204112228_Migracao3.cs" />
+      <Compile Remove="Migrations\20231204112228_Migracao3.Designer.cs" />
+      <Compile Remove="Migrations\ApplicationDbContextModelSnapshot.cs" />
+      <Compile Remove="Migrations\20231204223915_MigracaoPrivate.cs" />
+      <Compile Remove="Migrations\20231204223915_MigracaoPrivate.Designer.cs" />
+      <Compile Remove="Migrations\20231204224747_Private.cs" />
+      <Compile Remove="Migrations\20231204224747_Private.Designer.cs" />
+      <Compile Remove="Migrations\20231204225239_fixed.cs" />
+      <Compile Remove="Migrations\20231204225239_fixed.Designer.cs" />
+      <Compile Remove="Migrations\20231204230900_user.cs" />
+      <Compile Remove="Migrations\20231204230900_user.Designer.cs" />
+      <Compile Remove="Migrations\20231204231501_teste.cs" />
+      <Compile Remove="Migrations\20231204231501_teste.Designer.cs" />
+      <Compile Remove="Migrations\20231204232052_teste1.cs" />
+      <Compile Remove="Migrations\20231204232052_teste1.Designer.cs" />
+      <Compile Remove="Migrations\20231204232229_teste2.cs" />
+      <Compile Remove="Migrations\20231204232229_teste2.Designer.cs" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Migrations\" />
+    </ItemGroup>
+
 </Project>

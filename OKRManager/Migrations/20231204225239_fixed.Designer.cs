@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OKRManager.Data;
 
@@ -10,9 +11,11 @@ using OKRManager.Data;
 namespace OKRManager.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231204225239_fixed")]
+    partial class @fixed
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,6 +25,7 @@ namespace OKRManager.Migrations
             modelBuilder.Entity("OkrManager.Models.KeyResult", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
@@ -30,6 +34,9 @@ namespace OKRManager.Migrations
 
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime(6)");
+
+                    b.Property<int?>("ObjectiveId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime(6)");
@@ -43,12 +50,15 @@ namespace OKRManager.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("KeyResults");
+                    b.HasIndex("ObjectiveId");
+
+                    b.ToTable("KeyResult");
                 });
 
             modelBuilder.Entity("OkrManager.Models.Objective", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
@@ -68,7 +78,12 @@ namespace OKRManager.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Objective");
                 });
@@ -76,6 +91,7 @@ namespace OKRManager.Migrations
             modelBuilder.Entity("OkrManager.Models.SubTask", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
@@ -84,6 +100,9 @@ namespace OKRManager.Migrations
 
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime(6)");
+
+                    b.Property<int?>("KeyResultId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime(6)");
@@ -96,6 +115,8 @@ namespace OKRManager.Migrations
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("KeyResultId");
 
                     b.ToTable("SubTask");
                 });
@@ -106,14 +127,6 @@ namespace OKRManager.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
                     b.HasKey("Id");
 
                     b.ToTable("User");
@@ -121,35 +134,23 @@ namespace OKRManager.Migrations
 
             modelBuilder.Entity("OkrManager.Models.KeyResult", b =>
                 {
-                    b.HasOne("OkrManager.Models.Objective", "RelatedObjective")
+                    b.HasOne("OkrManager.Models.Objective", null)
                         .WithMany("KeyResults")
-                        .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("RelatedObjective");
+                        .HasForeignKey("ObjectiveId");
                 });
 
             modelBuilder.Entity("OkrManager.Models.Objective", b =>
                 {
-                    b.HasOne("OkrManager.Models.User", "RelatedUser")
+                    b.HasOne("OkrManager.Models.User", null)
                         .WithMany("Objectives")
-                        .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("RelatedUser");
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("OkrManager.Models.SubTask", b =>
                 {
-                    b.HasOne("OkrManager.Models.KeyResult", "RelatedKeyResult")
+                    b.HasOne("OkrManager.Models.KeyResult", null)
                         .WithMany("SubTasks")
-                        .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("RelatedKeyResult");
+                        .HasForeignKey("KeyResultId");
                 });
 
             modelBuilder.Entity("OkrManager.Models.KeyResult", b =>
